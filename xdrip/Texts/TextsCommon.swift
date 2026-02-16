@@ -241,4 +241,8 @@ class Texts_Common {
     static let notAvailable = {
         return NSLocalizedString("common_notAvailable", tableName: filename, bundle: Bundle.main, value: "Not Available", comment: "not available")
     }()
+    
+    static let stale = {
+        return NSLocalizedString("common_stale", tableName: filename, bundle: Bundle.main, value: "STALE", comment: "stale")
+    }()
 }

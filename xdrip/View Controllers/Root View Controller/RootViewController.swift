@@ -123,6 +123,14 @@ final class RootViewController: UIViewController, ObservableObject {
         }
     }
     
+    /// outlet for label that shows the data age progress bar
+    @IBOutlet weak var dataAgeProgressBarOutlet: BloodGlucoseAgeCircularBarView!
+
+    @IBAction func dataAgeProgressBarLongPressGestureRecognizerAction(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            dataAgeProgressBarOutlet.setDate(.now)
+        }
+    }
     
     // ***************************
     // ***** Main Chart View *****
@@ -2199,6 +2207,8 @@ final class RootViewController: UIViewController, ObservableObject {
         
         // start creating text for valueLabelOutlet, first the calculated value
         var calculatedValueAsString = lastReading.unitizedString(unitIsMgDl: mgdl)
+        
+        dataAgeProgressBarOutlet.setDate(lastReading.timeStamp)
         
         // if latestReading is older than 11 minutes, then it should be strikethrough
         if lastReading.timeStamp < Date(timeIntervalSinceNow: -60.0 * 11) {
